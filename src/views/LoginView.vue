@@ -22,7 +22,7 @@ export default {
 </script>
 
 <template>
- <div class="all">
+  <div class="all">
     <div class="container">
       <div class="title">
         <h1>Login</h1>
@@ -30,17 +30,18 @@ export default {
       <div class="input-field">
         <span>Nickname:</span>
         <input
-        @keydown.enter="submitLogin()"
-        v-model="user.username"  
-        type="text" 
-        placeholder="    Enter your nickname" />
+          @keydown.enter="submitLogin()"
+          v-model="user.username"
+          type="text"
+          placeholder="    Enter your nickname" />
       </div>
       <div class="input-field">
         <span>Password:</span>
-        <input @keydown.enter="submitLogin()"
-        v-model="user.password"  
-        type="password" 
-        placeholder="    Enter your password" />
+        <input
+          @keydown.enter="submitLogin()"
+          v-model="user.password"
+          type="password"
+          placeholder="    Enter your password" />
       </div>
       <div class="button">
         <button @click="submitLogin()">Submit !</button>
@@ -48,7 +49,7 @@ export default {
     </div>
     <section class="images">
       <div class="image">
-        <div class="circle"></div>
+        <div class="poligon"></div>
         <img src="@/assets/cria.svg" alt="" />
       </div>
     </section>
@@ -104,7 +105,7 @@ span {
   height: 50px;
   width: 200px;
   margin-top: 10%;
- 
+
   color: #181616;
 }
 
@@ -131,7 +132,11 @@ section.images {
   z-index: 0;
 }
 
-section.images .circle {
+img {
+  width: 30rem;
+}
+
+section.images .poligon {
   position: absolute;
   height: 90%;
   width: 100%;
@@ -155,5 +160,53 @@ section.images .circle {
     18% 19%
   );
   z-index: -1;
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+  section.images img {
+    height: 20rem;
+  }
+  section.images .poligon {
+    clip-path: polygon(
+      63% 3%,
+      90% 20%,
+      92% 61%,
+      75% 100%,
+      25% 100%,
+      7% 59%,
+      18% 19%
+    );
+  }
+}
+@media only screen and (max-width: 900px) {
+  .all {
+    background: linear-gradient(
+      45deg,
+      #d3c6cc,
+      #e2c3c6,
+      #eecfc4,
+      #f8e6c6,
+      #ffffcc
+    );
+  }
+  section.images {
+    display: none;
+    visibility: hidden;
+  }
+  main {
+    width: 100vw;
+  }
+}
+@media only screen and (max-width: 450px) {
+  main h1 {
+    font-size: 2rem;
+  }
+  main .alternative span {
+    font-size: 0.8rem;
+  }
+  main form label span,
+  main form input[type="submit"] {
+    font-size: 1rem;
+  }
 }
 </style>

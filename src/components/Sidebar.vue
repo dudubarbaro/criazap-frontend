@@ -1,34 +1,37 @@
 <template>
   <aside>
-    <div class="shield">
+    <div class="circle">
       <div class="perfil">
         <router-link to="/perfil">
           <i class="fa-solid fa-user"></i>
-          <span>Meu Perfil</span>
         </router-link>
       </div>
+    </div>
+    <div class="circle">
       <div class="status">
         <router-link to="/status">
           <i class="fa-regular fa-pen-to-square"></i>
-          <span>Status</span>
         </router-link>
       </div>
+    </div>
+    <div class="circle">
       <div class="chat">
         <router-link to="/chat">
           <i class="fa-solid fa-comment-dots"></i>
-          <span>Conversa</span>
         </router-link>
       </div>
+    </div>
+    <div class="circle">
       <div class="gear">
         <router-link to="/config">
           <i class="fa-solid fa-gear"></i>
-          <span>Configurações</span>
         </router-link>
       </div>
+    </div>
+    <div class="circle">
       <div class="about">
         <router-link to="/about">
           <i class="fa-sharp fa-solid fa-address-card"></i>
-          <span>Sobre Nós</span>
         </router-link>
       </div>
     </div>
@@ -42,14 +45,29 @@ export default {
 </script>
 
 <style scoped>
-span {
-  color: #eef;
-  font-family: "Poppins", sans-serif;
-  display: none;
+.circle {
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #3a3737;
 }
 
-span:hover {
-  visibility: visible;
+.circle:hover {
+  transition: 0.5s;
+  height: 50px;
+  background-color: #3a3737;
+  width: 200px;
+  border-radius: 200px;
+}
+.circle i {
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  color: #eef;
+  font-size: 20pt;
+  margin-top: 10px;
 }
 
 aside {
@@ -66,12 +84,6 @@ aside {
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-i {
-  cursor: pointer;
-  color: #eef;
-  font-size: 20pt;
-  margin-top: 10px;
 }
 
 .shield {
