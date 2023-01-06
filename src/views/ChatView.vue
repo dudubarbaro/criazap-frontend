@@ -24,20 +24,26 @@ export default {
 };
 </script>
 <template>
-  <Sidebar />
-  <main class="home-page">
-    <div class="head">
-      <i class="fa-solid fa-user"></i>
-      <span>{{ user.username }}</span>
-    </div>
-    <div class="mensages"></div>
-    <div class="send-mensage">
-      <i class="fa-solid fa-paperclip"></i>
-      <input class="input-mensage" type="text" placeholder="Mensagem" />
-    </div>
-  </main>
+  <div class="all">
+    <Sidebar />
+    <main class="home-page">
+      <div class="head">
+        <i class="fa-solid fa-user"></i>
+        <span>{{ user.username }}</span>
+      </div>
+      <div class="mensages"></div>
+      <div class="send-mensage">
+        <i class="fa-solid fa-paperclip"></i>
+        <input class="input-mensage" type="text" placeholder="Mensagem" />
+      </div>
+    </main>
+  </div>
 </template>
 <style scoped>
+.all {
+  display: flex;
+}
+
 .home-page {
   width: 100vw;
 }

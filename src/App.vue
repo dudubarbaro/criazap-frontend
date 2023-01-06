@@ -3,12 +3,4 @@
     <RouterView />
   </div>
 </template>
-<script setup>
-</script>
-<style>
-.app {
-  display: flex;
-  
-}
-
-</style>
+<script setup></script>
