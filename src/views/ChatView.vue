@@ -34,7 +34,10 @@ export default {
       <div class="mensages"></div>
       <div class="send-mensage">
         <i class="fa-solid fa-paperclip"></i>
-        <input class="input-mensage" type="text" placeholder="Mensagem" />
+        <input
+          class="input-mensage"
+          type="text"
+          placeholder="Digite aqui sua mensagem" />
       </div>
     </main>
   </div>
@@ -95,8 +98,9 @@ export default {
   border: #3a3737 1px solid;
   border-radius: 15px;
 }
-input::placeholder {
-  padding: 1.5vw;
+input {
+  outline: none;
+  padding: 10px;
 }
 .send-mensage i {
   font-size: 20pt;

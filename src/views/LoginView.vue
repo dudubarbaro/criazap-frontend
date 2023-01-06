@@ -33,7 +33,7 @@ export default {
           @keydown.enter="submitLogin()"
           v-model="user.username"
           type="text"
-          placeholder="    Enter your nickname" />
+          placeholder="Enter your nickname" />
       </div>
       <div class="input-field">
         <span>Password:</span>
@@ -41,7 +41,7 @@ export default {
           @keydown.enter="submitLogin()"
           v-model="user.password"
           type="password"
-          placeholder="    Enter your password" />
+          placeholder="Enter your password" />
       </div>
       <div class="button">
         <button @click="submitLogin()">Submit !</button>
@@ -110,6 +110,7 @@ span {
 }
 
 .input-field input {
+  padding: 10px;
   border-radius: 8px;
   height: 40px;
   outline: 0;
