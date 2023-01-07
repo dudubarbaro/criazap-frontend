@@ -1,6 +1,6 @@
 <script>
 import Sidebar from "@/components/Sidebar.vue";
-import chats from "@/components/chats.vue"
+import chats from "@/components/chats.vue";
 import axios from "axios";
 import { mapState } from "pinia";
 import { useAuthStore } from "@/stores/auth";
@@ -27,65 +27,77 @@ export default {
         return;
       }
       this.comentario.autor = this.id;
-      await axios.post(
-        "http://localhost:8000/chats/",
-        this.comentario
-      );
+      await axios.post("http://localhost:8000/chats/", this.comentario);
       await this.getAllComments();
     },
     async getAllComments() {
-      const comentarios = await axios.get(
-        "http://localhost:8000/chats/"
-      );
+      const comentarios = await axios.get("http://localhost:8000/chats/");
       this.comentarios = comentarios.data;
     },
   },
   async created() {
     await this.getAllComments();
   },
-  
 };
 </script>
 <template>
-  <div class="all">
-    <Sidebar />
-    
-    <main class="home-page">
-      <div class="head">
-        <i class="fa-solid fa-user"></i>
-        <span>{{ username }}</span>
-      </div>
-      <div class="mensages"></div>
-      <chats
-        v-for="comentario in comentarios"
-        :key="comentario.id"
-        :comentarios="comentario"
-      />
-      <div class="send-mensage">
+  <section class="home-section">
+    <div class="all">
+      <Sidebar />
 
-        <div class="submit">
-          <input
-            @keydown.enter="addComment()"
-            type="text"
-            style="padding: 4px"
-            placeholder="escreva seu comentario
-              "
-            v-model="comentario.texto"
-          />
-          <button
-            v-on:click.prevent="addComment"
-            type="submit"
-            class="btn btn-primary"
-          >
-            Enviar
-          </button>
-        <i class="fa-solid fa-paperclip"></i>
+      <main class="home-page">
+        <div class="head">
+          <i class="fa-solid fa-user"></i>
+          <span>{{ username }}</span>
         </div>
-      </div>
-    </main>
-  </div>
+        <div class="mensages"></div>
+        <chats
+          v-for="comentario in comentarios"
+          :key="comentario.id"
+          :comentarios="comentario" />
+        <div class="send-mensage">
+          <div class="submit">
+            <input
+              @keydown.enter="addComment()"
+              type="text"
+              style="padding: 4px"
+              placeholder="escreva seu comentario
+          "
+              v-model="comentario.texto" />
+            <button
+              v-on:click.prevent="addComment"
+              type="submit"
+              class="btn btn-primary">
+              Enviar
+            </button>
+            <i class="fa-solid fa-paperclip"></i>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
 </template>
 <style scoped>
+.sidebar.open .profile #log_out {
+  width: 50px;
+  background: none;
+}
+
+.home-section {
+  position: relative;
+  background-color: var(--color-body);
+  min-height: 100vh;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+
+.sidebar.open ~ .home-section {
+  left: 250px;
+  width: calc(100% - 250px);
+}
 .all {
   display: flex;
 }
