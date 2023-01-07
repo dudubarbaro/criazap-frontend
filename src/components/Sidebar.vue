@@ -51,10 +51,10 @@ window.onload = function () {
           <span class="tooltip">User</span>
         </li>
         <li>
-          <a href="#">
+          <RouterLink to="/chat">
             <i class="bx bx-chat"></i>
             <span class="link_name">Message</span>
-          </a>
+          </RouterLink>
           <span class="tooltip">Message</span>
         </li>
         <li>

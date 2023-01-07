@@ -1,7 +1,5 @@
 <script>
 import Sidebar from "@/components/Sidebar.vue";
-import chats from "@/components/chats.vue";
-import axios from "axios";
 import { mapState } from "pinia";
 import { useAuthStore } from "@/stores/auth";
 export default {
@@ -10,33 +8,11 @@ export default {
       value: 1,
       user: {},
       superuser: "",
-      comentarios: [],
-      comentario: {
-        texto: "",
-        autor: 0,
-      },
     };
   },
-  components: { Sidebar, chats },
+  components: { Sidebar},
   computed: {
     ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
-  },
-  methods: {
-    async addComment() {
-      if (this.comentario.texto.trim() === "") {
-        return;
-      }
-      this.comentario.autor = this.id;
-      await axios.post("http://localhost:8000/chats/", this.comentario);
-      await this.getAllComments();
-    },
-    async getAllComments() {
-      const comentarios = await axios.get("http://localhost:8000/chats/");
-      this.comentarios = comentarios.data;
-    },
-  },
-  async created() {
-    await this.getAllComments();
   },
 };
 </script>
@@ -44,33 +20,14 @@ export default {
   <section class="home-section">
     <div class="all">
       <Sidebar />
-
       <main class="home-page">
         <div class="head">
           <i class="fa-solid fa-user"></i>
-          <span>{{ username }}</span>
+          <span> Bem-vindo {{ username }} !</span>
         </div>
         <div class="mensages"></div>
-        <chats
-          v-for="comentario in comentarios"
-          :key="comentario.id"
-          :comentarios="comentario" />
         <div class="send-mensage">
           <div class="submit">
-            <input
-              @keydown.enter="addComment()"
-              type="text"
-              style="padding: 4px"
-              placeholder="escreva seu comentario
-          "
-              v-model="comentario.texto" />
-            <button
-              v-on:click.prevent="addComment"
-              type="submit"
-              class="btn btn-primary">
-              Enviar
-            </button>
-            <i class="fa-solid fa-paperclip"></i>
           </div>
         </div>
       </main>

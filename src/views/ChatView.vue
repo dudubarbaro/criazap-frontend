@@ -1,25 +1,42 @@
 <script>
 import Sidebar from "@/components/Sidebar.vue";
+import chats from "@/components/chats.vue";
 import axios from "axios";
 import { mapState } from "pinia";
 import { useAuthStore } from "@/stores/auth";
 export default {
   data() {
     return {
-      user: {
-        username: "",
-      },
+      value: 1,
+      user: {},
       superuser: "",
+      comentarios: [],
+      comentario: {
+        texto: "",
+        autor: 0,
+      },
     };
   },
-  components: { Sidebar },
-  async created() {
-    const res = await axios.get(`http://localhost:8000/usuario/${this.id}/`);
-    this.user = res.data;
-    console.log(this.user);
-  },
+  components: { Sidebar, chats },
   computed: {
-    ...mapState(useAuthStore, ["id", "username", "is_superuser"]),
+    ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
+  },
+  methods: {
+    async addComment() {
+      if (this.comentario.texto.trim() === "") {
+        return;
+      }
+      this.comentario.autor = this.id;
+      await axios.post("http://localhost:8000/chats/", this.comentario);
+      await this.getAllComments();
+    },
+    async getAllComments() {
+      const comentarios = await axios.get("http://localhost:8000/chats/");
+      this.comentarios = comentarios.data;
+    },
+  },
+  async created() {
+    await this.getAllComments();
   },
 };
 </script>
@@ -27,24 +44,45 @@ export default {
   <section class="home-section">
     <div class="all">
       <Sidebar />
+
       <main class="home-page">
         <div class="head">
           <i class="fa-solid fa-user"></i>
-          <span>{{ user.username }}</span>
+          <span>{{ username }}</span>
         </div>
         <div class="mensages"></div>
+        <chats
+          v-for="comentario in comentarios"
+          :key="comentario.id"
+          :comentarios="comentario" />
         <div class="send-mensage">
-          <i class="fa-solid fa-paperclip"></i>
-          <input
-            class="input-mensage"
-            type="text"
-            placeholder="Digite aqui sua mensagem" />
+          <div class="submit">
+            <input
+              @keydown.enter="addComment()"
+              type="text"
+              style="padding: 4px"
+              placeholder="escreva seu comentario
+          "
+              v-model="comentario.texto" />
+            <button
+              v-on:click.prevent="addComment"
+              type="submit"
+              class="btn btn-primary">
+              Enviar
+            </button>
+            <i class="fa-solid fa-paperclip"></i>
+          </div>
         </div>
       </main>
     </div>
   </section>
 </template>
 <style scoped>
+.sidebar.open .profile #log_out {
+  width: 50px;
+  background: none;
+}
+
 .home-section {
   position: relative;
   background-color: var(--color-body);
@@ -59,11 +97,6 @@ export default {
 .sidebar.open ~ .home-section {
   left: 250px;
   width: calc(100% - 250px);
-}
-
-.sidebar.open .profile #log_out {
-  width: 50px;
-  background: none;
 }
 .all {
   display: flex;
@@ -120,9 +153,8 @@ export default {
   border: #3a3737 1px solid;
   border-radius: 15px;
 }
-input {
-  outline: none;
-  padding: 10px;
+input::placeholder {
+  padding: 1.5vw;
 }
 .send-mensage i {
   font-size: 20pt;
