@@ -56,6 +56,7 @@ export default {
           :key="comentario.id"
           :comentarios="comentario" />
         <div class="send-mensage">
+          <i class="fa-solid fa-paperclip"></i>
           <div class="submit">
             <input
               @keydown.enter="addComment()"
@@ -70,7 +71,6 @@ export default {
               class="btn btn-primary">
               Enviar
             </button>
-            <i class="fa-solid fa-paperclip"></i>
           </div>
         </div>
       </main>
@@ -78,6 +78,10 @@ export default {
   </section>
 </template>
 <style scoped>
+.mensages {
+  overflow: auto;
+}
+
 .sidebar.open .profile #log_out {
   width: 50px;
   background: none;
@@ -153,9 +157,45 @@ export default {
   border: #3a3737 1px solid;
   border-radius: 15px;
 }
-input::placeholder {
-  padding: 1.5vw;
+
+.submit input {
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  font-family: "Poppins";
+  margin-left: 15px;
+  height: 40px;
+  width: 55rem;
 }
+
+button {
+  cursor: pointer;
+  color: #3a3737;
+  font-family: "Poppins";
+  font-weight: 700;
+  border-radius: 0 8px 8px 0;
+  width: 100px;
+  height: 40px;
+  background: linear-gradient(
+    to left,
+    #e999a1,
+    #ecb2b7,
+    #f7c4b2,
+    #f1eb96,
+    #caca9e
+  );
+}
+
+button:hover {
+  background: linear-gradient(
+    to right,
+    #e999a1,
+    #ecb2b7,
+    #f7c4b2,
+    #f1eb96,
+    #caca9e
+  );
+}
+
 .send-mensage i {
   font-size: 20pt;
   margin-left: 5vw;
