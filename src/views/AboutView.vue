@@ -17,6 +17,8 @@ export default {
 <style scoped>
 .all {
   display: flex;
+  left: 300px;
+  width: calc(100% - 250px);
 }
 
 .about-page {
