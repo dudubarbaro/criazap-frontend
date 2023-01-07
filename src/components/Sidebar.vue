@@ -3,6 +3,7 @@ import { mapState } from "pinia";
 import { useAuthStore } from "@/stores/auth";
 export default {
   name: "SIDEBAR",
+  access: "",
   user: {},
       superuser: "",
 
@@ -100,9 +101,10 @@ window.onload = function () {
               src="https://contents.bebee.com/users/id/xqULQ62ded0d70643c/_avatar-E794o-400.png"
               alt="profile image" />
               <div class="profile_content" v-bind="superuser">
-              <div class="name" > Bem vindo ao seu perfil {{ username }} !</div>
-              <div class="designation" v-if="is_superuser == true">Você está logado como Admin </div>
-              <div class="designation" v-if="is_superuser == false">Você está logado como Usuario</div>
+              <div class="name" >{{ username }}</div>
+              <div class="designation" v-if="is_superuser == true">Admin </div>
+              <div class="designation" v-if="is_superuser == false">Usuario</div>
+              
             </div>
           </div>
           <i class="bx bx-log-out" id="log_out"></i>
