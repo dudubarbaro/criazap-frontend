@@ -1,6 +1,14 @@
 <script>
+import { mapState } from "pinia";
+import { useAuthStore } from "@/stores/auth";
 export default {
   name: "SIDEBAR",
+  user: {},
+      superuser: "",
+
+      computed: {
+    ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
+  },
 };
 
 window.onload = function () {
@@ -33,7 +41,7 @@ window.onload = function () {
     <div class="sidebar">
       <div class="logo_details">
         <i class="bx bxl-audible icon"></i>
-        <div class="logo_name">Cria Zap</div>
+        <div class="logo_name">Criazap</div>
         <i class="bx bx-menu" id="btn"></i>
       </div>
       <ul class="nav-list">
@@ -79,20 +87,22 @@ window.onload = function () {
           <span class="tooltip">Order</span>
         </li>
         <li>
-          <a href="#">
+          <RouterLink to="/config">
             <i class="bx bx-cog"></i>
             <span class="link_name">Settings</span>
-          </a>
+          </RouterLink>
           <span class="tooltip">Settings</span>
         </li>
         <li class="profile">
+          
           <div class="profile_details">
             <img
               src="https://contents.bebee.com/users/id/xqULQ62ded0d70643c/_avatar-E794o-400.png"
               alt="profile image" />
-            <div class="profile_content">
-              <div class="name">Ovo Barbaro</div>
-              <div class="designation">Admin</div>
+              <div class="profile_content" v-bind="superuser">
+              <div class="name" > Bem vindo ao seu perfil {{ username }} !</div>
+              <div class="designation" v-if="is_superuser == true">Você está logado como Admin </div>
+              <div class="designation" v-if="is_superuser == false">Você está logado como Usuario</div>
             </div>
           </div>
           <i class="bx bx-log-out" id="log_out"></i>
