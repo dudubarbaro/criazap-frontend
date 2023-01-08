@@ -1,16 +1,16 @@
-    <script>
-    import Sidebar from "@/components/Sidebar.vue";
-    import { mapState } from "pinia";
-    import { useAuthStore } from "@/stores/auth";
-    export default {
-      components: { Sidebar },
-      user: {},
-          superuser: "",
-    computed: {
-        ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
-      },
-    };
-    </script>
+<script>
+import Sidebar from "@/components/Sidebar.vue";
+import { mapState } from "pinia";
+import { useAuthStore } from "@/stores/auth";
+export default {
+  components: { Sidebar },
+  user: {},
+  superuser: "",
+  computed: {
+    ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
+  },
+};
+</script>
 <template>
   <section class="home-section">
     <div class="all">
@@ -19,30 +19,27 @@
       <div class="circle-2"></div>
       <div class="container">
         <div class="avatar">
-          <img
-            src="../assets/semfoto.png"
-            alt="teste"
-          />
+          <img src="../assets/semfoto.png" alt="teste" />
         </div>
-      <main class="config-page">
-        <h1>Configuração de usuário:</h1>
-        <div class="profile_content" v-bind="superuser">
-              <div class="name" > Bem vindo ao seu perfil {{ username }} !</div>
-              <div class="designation" v-if="is_superuser == true">Você está logado como Admin </div>
-              <div class="designation" v-if="is_superuser != true">Você está logado como Usuario</div>
+        <main class="config-page">
+          <div class="alter">
+            <h1>Oque voce deseja alterar?</h1>
+            <input type="text" placeholder="Nome de usuario" />
+            <input type="text" placeholder="Email de usuario" />
+            <input type="password" placeholder="Digite sua nova senha" />
+            <input type="password" placeholder="Confirme sua nova senha" />
+            <div class="buttons">
+              <div class="alt">
+                <button>Alterar</button>
+              </div>
+              <div class="des">
+                <button>Deslogar</button>
+              </div>
             </div>
-      <div class="alter">
-        <h1>Oque voce deseja alterar?</h1>
-        <input type="text" placeholder="Nome de usuario">
-        <input type="text" placeholder="Email de usuario">
-        <div class="buttons">
-          <button>Alterar</button>
-          <button>Deslogar</button>
-        </div>
+          </div>
+        </main>
       </div>
-      </main>
     </div>
-  </div>
   </section>
 </template>
 <style scoped>
@@ -56,12 +53,41 @@
   box-sizing: border-box;
 }
 
-img{
+.alter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.buttons {
+  display: flex;
+}
+
+button {
+  margin-right: 10px;
+}
+
+main {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+img {
   margin-right: 30px;
   border-radius: 50%;
 }
 
-input{
+input {
+  border: solid 1px #cac7c9;
+  margin-right: 10px;
+  width: 395px;
+  padding: 10px;
+  border-radius: 8px;
+  height: 40px;
+  outline: 0;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -74,12 +100,11 @@ input{
   justify-content: center;
 }
 
-h1{
+h1 {
   background: -webkit-linear-gradient(45deg, #836c64, #5e585b, #c0acae);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 
 .circle-1 {
   position: absolute;
@@ -99,17 +124,17 @@ h1{
 }
 
 .container {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 800px;
-height: 400px;
-background: rgba(247, 244, 207, 0.27);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6.7px);
--webkit-backdrop-filter: blur(6.7px);
-border: 1px solid rgba(247, 244, 207, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 400px;
+  background: rgba(247, 244, 207, 0.27);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.7px);
+  -webkit-backdrop-filter: blur(6.7px);
+  border: 1px solid rgba(247, 244, 207, 0.3);
 }
 
 span {
@@ -127,17 +152,11 @@ button {
   width: 200px;
   margin-top: 10%;
   color: #181616;
-}
-
-input {
-  padding: 10px;
-  border-radius: 8px;
-  height: 40px;
-  outline: 0;
-  margin-top: 10px;
+  border: solid 1px #cac7c9;
 }
 
 button:hover {
+  border: none;
   cursor: pointer;
   letter-spacing: 2px;
   border: 4px solid #eecfc4;
@@ -145,11 +164,4 @@ button:hover {
   color: #eef;
   transition: 0.5s;
 }
-
-main{
-  align-items: center;
-  flex-direction: column;
-}
-
 </style>
-

@@ -130,7 +130,7 @@ export default {
   font-weight: 600;
 }
 .head i {
-  margin-left: 5vw;
+  margin-left: 15rem;
   font-size: 20pt;
 }
 .mensages {
@@ -165,6 +165,12 @@ export default {
   margin-left: 15px;
   height: 40px;
   width: 55rem;
+}
+
+.send-mensage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
