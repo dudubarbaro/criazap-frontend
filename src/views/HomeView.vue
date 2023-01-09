@@ -10,7 +10,7 @@ export default {
       superuser: "",
     };
   },
-  components: { Sidebar},
+  components: { Sidebar },
   computed: {
     ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
   },
@@ -25,10 +25,12 @@ export default {
           <i class="fa-solid fa-user"></i>
           <span> Bem-vindo {{ username }} !</span>
         </div>
-        <div class="mensages"></div>
-        <div class="send-mensage">
-          <div class="submit">
-          </div>
+        <div class="home-space">
+          <a href="/login">Login</a>
+          <span>Cadastre-se</span>
+        </div>
+        <div class="send-home-space">
+          <div class="submit"></div>
         </div>
       </main>
     </div>
@@ -86,10 +88,10 @@ export default {
   margin-left: 5vw;
   font-size: 20pt;
 }
-.mensages {
+.home-space {
   height: 77vh;
 }
-.send-mensage {
+.send-home-space {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -103,7 +105,7 @@ export default {
     #ffffcc
   );
 }
-.input-mensage {
+.input-home-space {
   height: 50%;
   width: 70%;
   margin-left: 2vw;
@@ -113,8 +115,9 @@ export default {
 input::placeholder {
   padding: 1.5vw;
 }
-.send-mensage i {
+.send-home-space i {
   font-size: 20pt;
   margin-left: 5vw;
 }
+
 </style>
