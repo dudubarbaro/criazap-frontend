@@ -5,7 +5,6 @@ export default {
   data() {
     return {
       user: {},
-      
     };
   },
   methods: {
@@ -13,7 +12,7 @@ export default {
     async submitLogin() {
       try {
         await this.login(this.user);
-        this.$router.push("/");
+        this.$router.push("/home");
       } catch {
         alert("Usuário ou senha invalidos!");
       }
@@ -34,7 +33,8 @@ export default {
           @keydown.enter="submitLogin()"
           v-model="user.username"
           type="text"
-          placeholder="Enter your nickname" />
+          placeholder="Enter your nickname"
+        />
       </div>
       <div class="input-field">
         <span>Password:</span>
@@ -42,7 +42,8 @@ export default {
           @keydown.enter="submitLogin()"
           v-model="user.password"
           type="password"
-          placeholder="Enter your password" />
+          placeholder="Enter your password"
+        />
       </div>
       <div class="button">
         <button @click="submitLogin()">Submit !</button>

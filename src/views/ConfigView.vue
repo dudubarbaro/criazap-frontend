@@ -1,9 +1,7 @@
 <script>
-import Sidebar from "@/components/Sidebar.vue";
 import { mapState } from "pinia";
 import { useAuthStore } from "@/stores/auth";
 export default {
-  components: { Sidebar },
   user: {},
   superuser: "",
   computed: {
@@ -14,31 +12,26 @@ export default {
 <template>
   <section class="home-section">
     <div class="all">
-      <Sidebar />
-      <div class="circle-1"></div>
-      <div class="circle-2"></div>
-      <div class="container">
-        <div class="avatar">
-          <img src="../assets/semfoto.png" alt="teste" />
-        </div>
-        <main class="config-page">
-          <div class="alter">
-            <h1>Oque voce deseja alterar?</h1>
-            <input type="text" placeholder="Nome de usuario" />
-            <input type="text" placeholder="Email de usuario" />
-            <input type="password" placeholder="Digite sua nova senha" />
-            <input type="password" placeholder="Confirme sua nova senha" />
-            <div class="buttons">
-              <div class="alt">
-                <button>Alterar</button>
-              </div>
-              <div class="des">
-                <button>Deslogar</button>
-              </div>
+      <div class="avatar">
+        <img src="../assets/semfoto.png" alt="teste" />
+      </div>
+      <main class="config-page">
+        <div class="alter">
+          <h1>Oque voce deseja alterar?</h1>
+          <input type="text" placeholder="Nome de usuario" />
+          <input type="text" placeholder="Email de usuario" />
+          <input type="password" placeholder="Digite sua nova senha" />
+          <input type="password" placeholder="Confirme sua nova senha" />
+          <div class="buttons">
+            <div class="alt">
+              <button>Alterar</button>
+            </div>
+            <div class="des">
+              <button>Deslogar</button>
             </div>
           </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   </section>
 </template>
@@ -90,14 +83,6 @@ input {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-}
-
-.all {
-  background-color: #eef;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 h1 {

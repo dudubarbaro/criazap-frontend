@@ -1,9 +1,13 @@
 <script>
-import Sidebar from "@/components/Sidebar.vue";
 import chats from "@/components/chats.vue";
 import axios from "axios";
 import { mapState } from "pinia";
 import { useAuthStore } from "@/stores/auth";
+import dayjs from "dayjs";
+import locale_pt_br from "dayjs/locale/pt-br";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 export default {
   data() {
     return {
@@ -17,7 +21,7 @@ export default {
       },
     };
   },
-  components: { Sidebar, chats },
+  components: { chats },
   computed: {
     ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
   },
@@ -33,6 +37,13 @@ export default {
     async getAllComments() {
       const comentarios = await axios.get("http://localhost:8000/chats/");
       this.comentarios = comentarios.data;
+      this.comentarios = comentarios.data;
+      this.comentarios.forEach(
+        (comentario) =>
+          (comentario.data = dayjs(comentario.data)
+            .locale(locale_pt_br)
+            .fromNow())
+      );
     },
   },
   async created() {
@@ -43,18 +54,13 @@ export default {
 <template>
   <section class="home-section">
     <div class="all">
-      <Sidebar />
-
       <main class="home-page">
-        <div class="head">
-          <i class="fa-solid fa-user"></i>
-          <span>{{ username }}</span>
-        </div>
-        <div class="mensages"></div>
         <chats
           v-for="comentario in comentarios"
           :key="comentario.id"
-          :comentarios="comentario" />
+          :comentarios="comentario"
+        />
+        <div class="mensages"></div>
         <div class="send-mensage">
           <i class="fa-solid fa-paperclip"></i>
           <div class="submit">
@@ -64,11 +70,13 @@ export default {
               style="padding: 4px"
               placeholder="escreva seu comentario
           "
-              v-model="comentario.texto" />
+              v-model="comentario.texto"
+            />
             <button
               v-on:click.prevent="addComment"
               type="submit"
-              class="btn btn-primary">
+              class="btn btn-primary"
+            >
               Enviar
             </button>
           </div>

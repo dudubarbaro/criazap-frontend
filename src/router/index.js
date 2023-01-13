@@ -6,48 +6,54 @@ import Chat from "@/views/ChatView.vue";
 import Perfil from "@/views/PerfilView.vue";
 import Config from "@/views/ConfigView.vue";
 import Status from "@/views/StatusView.vue";
+import dashboard from "../views/master/dashboard";
 
 const routes = [
   {
-    path: "/login",
+    path: "/",
     name: "Login",
     component: Login,
   },
   {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: About,
-  },
-  {
-    path: "/chat",
-    name: "Chat",
-    component: Chat,
-  },
-  {
-    path: "/config",
-    name: "Config",
-    component: Config,
-  },
-  {
-    path: "/perfil",
-    name: "Perfil",
-    component: Perfil,
-  },
-  {
-    path: "/status",
-    name: "Status",
-    component: Status,
+    name: "Dashboard",
+    path: "/home",
+    component: dashboard,
+    children: [
+      { path: "/home", name: "Home", component: Home },
+      {
+        path: "/about",
+        name: "About",
+        component: About,
+      },
+      {
+        path: "/chat",
+        name: "Chat",
+        component: Chat,
+      },
+      {
+        path: "/config",
+        name: "Config",
+        component: Config,
+      },
+      {
+        path: "/perfil",
+        name: "Perfil",
+        component: Perfil,
+      },
+      {
+        path: "/status",
+        name: "Status",
+        component: Status,
+      },
+    ],
   },
 ];
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
-
+const router = Router();
 export default router;
+function Router() {
+  const router = new createRouter({
+    history: createWebHistory(),
+    routes,
+  });
+  return router;
+}

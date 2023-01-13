@@ -1,6 +1,12 @@
 <script>
 import { mapState } from "pinia";
 import { useAuthStore } from "@/stores/auth";
+import dayjs from "dayjs";
+// import locale_pt_br from "dayjs/locale/pt-br";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
+
 export default {
   props: ["comentarios"],
   data() {
@@ -13,26 +19,27 @@ export default {
   computed: {
     ...mapState(useAuthStore, ["is_superuser"]),
   },
-  
 };
 </script>
 
 <template>
   <div class="full">
-    <div class="comentarios">
-      <RouterLink to="/singout"
-        ><h1>{{ comentarios.autor.username }}</h1></RouterLink
+    <div class="font-bold text-xl">
+      <h1>{{ comentarios.autor.username }}</h1>
+      <div
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
       >
-      <div class="fuso">
         <h2>{{ comentarios.texto }}</h2>
-        <a>{{ comentarios.data }}</a>
+        <div class="">
+          <a>{{ comentarios.data }}</a>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.leaflet-popup-content-wrapper,
+/* .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
   background-color: #fff0ac;
 }
@@ -53,18 +60,13 @@ export default {
   max-width: 750px;
   border-radius: 0px 10px 10px 10px;
   border: 1px solid #eef;
-  background-color: #a3944f;
+  background-color: #afafaf;
   display: flex;
   margin-top: 20px;
   margin-left: 20px;
 }
 h1 {
-  background: -webkit-linear-gradient(45deg,
-    #d3c6cc,
-    #e2c3c6,
-    #eecfc4,
-    #f8e6c6,
-    #ffffcc);
+  background: -webkit-linear-gradient(45deg, #333333, #141414);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 16pt;
@@ -80,5 +82,5 @@ h2 {
   margin-left: 5%;
   display: flex;
   color: #eff;
-}
+} */
 </style>

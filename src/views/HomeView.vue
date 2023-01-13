@@ -1,123 +1,44 @@
 <script>
-import Sidebar from "@/components/Sidebar.vue";
-import { mapState } from "pinia";
-import { useAuthStore } from "@/stores/auth";
-export default {
-  data() {
-    return {
-      value: 1,
-      user: {},
-      superuser: "",
-    };
-  },
-  components: { Sidebar },
-  computed: {
-    ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
-  },
-};
+export default {};
 </script>
+
 <template>
-  <section class="home-section">
-    <div class="all">
-      <Sidebar />
-      <main class="home-page">
-        <div class="head">
-          <i class="fa-solid fa-user"></i>
-          <span> Bem-vindo {{ username }} !</span>
-        </div>
-        <div class="home-space">
-          <a href="/login">Login</a>
-          <span>Cadastre-se</span>
-        </div>
-        <div class="send-home-space">
-          <div class="submit"></div>
-        </div>
-      </main>
+  <div>
+    <h3 class="text-2xl font-bold text-left py-2">Pagina Inicial</h3>
+    <div class="overflow-x-auto relative sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead
+          class="text-xs text-black uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="py-3 px-6">
+              <div class="flex items-center">
+                <a href="#">
+                  <path
+                    d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
+                  ></path>
+                </a>
+              </div>
+            </th>
+            <th scope="col" class="py-3 px-6">
+              <div class="flex items-center"></div>
+            </th>
+            <th scope="col" class="py-3 px-6">
+              <div class="flex items-center">
+                <path
+                  d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
+                ></path>
+              </div>
+            </th>
+            <th scope="col" class="py-3 px-6">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
-  </section>
+  </div>
 </template>
-<style scoped>
-.sidebar.open .profile #log_out {
-  width: 50px;
-  background: none;
-}
 
-.home-section {
-  position: relative;
-  background-color: var(--color-body);
-  min-height: 100vh;
-  top: 0;
-  left: 78px;
-  width: calc(100% - 78px);
-  transition: all 0.5s ease;
-  z-index: 2;
-}
-
-.sidebar.open ~ .home-section {
-  left: 250px;
-  width: calc(100% - 250px);
-}
-.all {
-  display: flex;
-}
-
-.home-page {
-  width: 100vw;
-}
-.head {
-  align-items: center;
-  flex-direction: row;
-  display: flex;
-  height: 13vh;
-  background: linear-gradient(
-    45deg,
-    #fffccc,
-    #ffffcc,
-    #eecfc4,
-    #d3c6cc,
-    #e2c3c6
-  );
-}
-.head span {
-  margin-left: 1vw;
-  font-family: "Poppins", sans-serif;
-  font-size: 15pt;
-  font-weight: 600;
-}
-.head i {
-  margin-left: 5vw;
-  font-size: 20pt;
-}
-.home-space {
-  height: 77vh;
-}
-.send-home-space {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  height: 10vh;
-  background: linear-gradient(
-    45deg,
-    #f0d1d4,
-    #e2c3c6,
-    #eecfc4,
-    #fffccc,
-    #ffffcc
-  );
-}
-.input-home-space {
-  height: 50%;
-  width: 70%;
-  margin-left: 2vw;
-  border: #3a3737 1px solid;
-  border-radius: 15px;
-}
-input::placeholder {
-  padding: 1.5vw;
-}
-.send-home-space i {
-  font-size: 20pt;
-  margin-left: 5vw;
-}
-
-</style>
+<style></style>
