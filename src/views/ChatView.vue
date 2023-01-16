@@ -52,166 +52,49 @@ export default {
 };
 </script>
 <template>
-  <section class="home-section">
-    <div class="all">
-      <main class="home-page">
+  <section class="flex h-screen overflow-auto">
+    <div class="bg-white xl:w-11/12 lg:w-8/12 hidden lg:block">
+      <div class="py-6 px-20 border-b">
+        <!-- <div class="flex">
+          <div class="flex flex-grow">
+            <div class="relative mr-4"></div>
+            <div>
+              <p class="font-medium">Chat Principal</p>
+              <small class="text-gray-500">Ativo</small>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="py-6 px-20 h-3/4 overflow-auto">
+        <div class="absolute">
+          <div class="w-4/5">
+            <input
+              type="text"
+              class="rounded-sm px-4 py-2 focus:outline-none bg-gray-100 w-full"
+              placeholder="Escreva sua mensagem..."
+              v-model="comentario.texto"
+            />
+          </div>
+
+          <a
+            @click="addComment()"
+            class="bg-indigo-900 text-white rounded px-4 py-2"
+            >Enviar</a
+          >
+        </div>
         <chats
           v-for="comentario in comentarios"
           :key="comentario.id"
           :comentarios="comentario"
         />
-        <div class="mensages"></div>
-        <div class="send-mensage">
-          <i class="fa-solid fa-paperclip"></i>
-          <div class="submit">
-            <input
-              @keydown.enter="addComment()"
-              type="text"
-              style="padding: 4px"
-              placeholder="escreva seu comentario
-          "
-              v-model="comentario.texto"
-            />
-            <button
-              v-on:click.prevent="addComment"
-              type="submit"
-              class="btn btn-primary"
-            >
-              Enviar
-            </button>
-          </div>
+        <div class="flex mb-12">
+          <div class="flex flex-col"></div>
         </div>
-      </main>
+        <div class="flex flex-row-reverse mb-12">
+          <div class="flex flex-col"></div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
-<style scoped>
-.mensages {
-  overflow: auto;
-}
-
-.sidebar.open .profile #log_out {
-  width: 50px;
-  background: none;
-}
-
-.home-section {
-  position: relative;
-  background-color: var(--color-body);
-  min-height: 100vh;
-  top: 0;
-  left: 78px;
-  width: calc(100% - 78px);
-  transition: all 0.5s ease;
-  z-index: 2;
-}
-
-.sidebar.open ~ .home-section {
-  left: 250px;
-  width: calc(100% - 250px);
-}
-.all {
-  display: flex;
-}
-
-.home-page {
-  width: 100vw;
-}
-.head {
-  align-items: center;
-  flex-direction: row;
-  display: flex;
-  height: 13vh;
-  background: linear-gradient(
-    45deg,
-    #fffccc,
-    #ffffcc,
-    #eecfc4,
-    #d3c6cc,
-    #e2c3c6
-  );
-}
-.head span {
-  margin-left: 1vw;
-  font-family: "Poppins", sans-serif;
-  font-size: 15pt;
-  font-weight: 600;
-}
-.head i {
-  margin-left: 15rem;
-  font-size: 20pt;
-}
-.mensages {
-  height: 77vh;
-}
-.send-mensage {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  height: 10vh;
-  background: linear-gradient(
-    45deg,
-    #f0d1d4,
-    #e2c3c6,
-    #eecfc4,
-    #fffccc,
-    #ffffcc
-  );
-}
-.input-mensage {
-  height: 50%;
-  width: 70%;
-  margin-left: 2vw;
-  border: #3a3737 1px solid;
-  border-radius: 15px;
-}
-
-.submit input {
-  border-radius: 8px 0 0 8px;
-  outline: none;
-  font-family: "Poppins";
-  margin-left: 15px;
-  height: 40px;
-  width: 55rem;
-}
-
-.send-mensage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-button {
-  cursor: pointer;
-  color: #3a3737;
-  font-family: "Poppins";
-  font-weight: 700;
-  border-radius: 0 8px 8px 0;
-  width: 100px;
-  height: 40px;
-  background: linear-gradient(
-    to left,
-    #e999a1,
-    #ecb2b7,
-    #f7c4b2,
-    #f1eb96,
-    #caca9e
-  );
-}
-
-button:hover {
-  background: linear-gradient(
-    to right,
-    #e999a1,
-    #ecb2b7,
-    #f7c4b2,
-    #f1eb96,
-    #caca9e
-  );
-}
-
-.send-mensage i {
-  font-size: 20pt;
-  margin-left: 5vw;
-}
-</style>
+<style scoped></style>
