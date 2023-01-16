@@ -5,9 +5,9 @@ export default {
   name: "SIDEBAR",
   access: "",
   user: {},
-      superuser: "",
+  superuser: "",
 
-      computed: {
+  computed: {
     ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
   },
 };
@@ -95,16 +95,17 @@ window.onload = function () {
           <span class="tooltip">Settings</span>
         </li>
         <li class="profile">
-          
           <div class="profile_details">
             <img
               src="https://contents.bebee.com/users/id/xqULQ62ded0d70643c/_avatar-E794o-400.png"
-              alt="profile image" />
-              <div class="profile_content" v-bind="superuser">
-              <div class="name" >{{ username }}</div>
-              <div class="designation" v-if="is_superuser == true">Admin </div>
-              <div class="designation" v-if="is_superuser == false">Usuario</div>
-              
+              alt="profile image"
+            />
+            <div class="profile_content" v-bind="superuser">
+              <div class="name">{{ username }}</div>
+              <div class="designation" v-if="is_superuser == true">Admin</div>
+              <div class="designation" v-if="is_superuser == false">
+                Usuario
+              </div>
             </div>
           </div>
           <i class="bx bx-log-out" id="log_out"></i>

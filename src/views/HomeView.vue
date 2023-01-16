@@ -6,9 +6,11 @@ export default {};
   <div>
     <h3 class="text-2xl font-bold text-left py-2">Pagina Inicial</h3>
     <div class="overflow-x-auto relative sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <table
+        class="w-full text-sm text-left text-emerald-500 dark:text-gray-400"
+      >
         <thead
-          class="text-xs text-black uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+          class="text-xs text-black uppercase bg-gray-50 dark:bg-emerald-700 dark:text-gray-400"
         >
           <tr>
             <th scope="col" class="py-3 px-6">

@@ -30,22 +30,22 @@ export default {
   <div class="w-screen h-screen flex">
     <!-- Side bar -->
     <div
-      class="w-[400px] h-full bg-amber-300 text-indigo-100"
+      class="w-[400px] h-full bg-amber-300 text-emerald-200"
       v-show="showSide"
     >
-      <div class="h-[50px] bg-indigo-900 flex justify-start items-center">
+      <div class="h-[50px] bg-emerald-900 flex justify-start items-center">
         <div class="px-[20px]">
           <h3 class="font-bold text-xl">Criazap</h3>
         </div>
       </div>
-      <div class="h-[calc(100vh-50px)] bg-indigo-400 py-[20px]">
+      <div class="h-[calc(100vh-50px)] bg-emerald-800 py-[20px]">
         <div
           class="flex flex-col justify-between h-full px-[20px] space-y-[10px]"
         >
           <div class="flex flex-col justify-between space-y-[10px]">
             <router-link
-              to="/"
-              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-indigo-800 hover:bg-indigo-300 hover:text-indigo-900 transition duration-400 ease-in-out"
+              to="/home"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-emerald-800 hover:bg-emerald-300 hover:text-emerald-900 transition duration-400 ease-in-out"
             >
               <svg
                 aria-hidden="true"
@@ -64,7 +64,7 @@ export default {
             </router-link>
             <router-link
               to="/perfil"
-              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-indigo-800 hover:bg-indigo-300 hover:text-indigo-900 transition duration-400 ease-in-out"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-emerald-800 hover:bg-emerald-300 hover:text-emerald-900 transition duration-400 ease-in-out"
             >
               <svg
                 aria-hidden="true"
@@ -81,7 +81,7 @@ export default {
             </router-link>
             <router-link
               to="/chat"
-              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-indigo-800 hover:bg-indigo-300 hover:text-indigo-900 transition duration-400 ease-in-out"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-emerald-800 hover:bg-emerald-300 hover:text-emerald-900 transition duration-400 ease-in-out"
             >
               <svg
                 aria-hidden="true"
@@ -100,7 +100,7 @@ export default {
             </router-link>
             <router-link
               to="/status"
-              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-indigo-800 hover:bg-indigo-300 hover:text-indigo-900 transition duration-400 ease-in-out"
+              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-emerald-800 hover:bg-emerald-300 hover:text-emerald-900 transition duration-400 ease-in-out"
             >
               <svg
                 aria-hidden="true"
@@ -122,7 +122,7 @@ export default {
             <div>
               <router-link
                 to="/config"
-                class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-indigo-800 hover:bg-indigo-100 hover:text-indigo-900 transition duration-400 ease-in-out"
+                class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-emerald-800 hover:bg-emerald-300 hover:text-emerald-900 transition duration-400 ease-in-out"
               >
                 <svg
                   aria-hidden="true"
@@ -196,7 +196,7 @@ export default {
               />
               <div class="font-semibold dark:text-white text-left">
                 <div>{{ username }}</div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">
+                <div class="text-xs text-emerald-500 dark:text-gray-400">
                   <div class="designation" v-if="is_superuser == true">
                     Admin
                   </div>
@@ -219,7 +219,7 @@ export default {
                 <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                 <a
                   href="/config"
-                  class="text-gray-700 block px-4 py-2 text-sm"
+                  class="text-emerald-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-0"
@@ -227,7 +227,7 @@ export default {
                 >
                 <a
                   href="#"
-                  class="text-gray-700 block px-4 py-2 text-sm"
+                  class="text-emerald-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-2"
@@ -235,7 +235,7 @@ export default {
                 >
                 <a
                   href="/"
-                  class="text-gray-700 block px-4 py-2 text-sm"
+                  class="text-emerald-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-2"
