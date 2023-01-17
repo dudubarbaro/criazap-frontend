@@ -22,194 +22,113 @@ export default {
 </script>
 
 <template>
-  <div class="all">
-    <div class="container">
-      <div class="title">
-        <h1>Login</h1>
-      </div>
-      <div class="input-field">
-        <span>Nickname:</span>
-        <input
+  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-lg">
+      <h1 class="text-center text-2xl font-bold text-emerald-600 sm:text-3xl">
+        Bem-vindo ao Criazap!
+      </h1>
+
+      <p class="mx-auto mt-4 max-w-md text-center text-gray-500">
+        Desenvolvido por @gustavorteuber <br />
+        para acessar meu perfil
+        <a
+          class="underline"
+          target="_blank"
+          href="https://github.com/gustavorteuber"
+        >
+          Clique aqui
+        </a>
+      </p>
+
+      <form action="" class="mt-6 mb-0 space-y-4 rounded-lg p-8 shadow-2xl">
+        <p class="text-lg font-medium">Entre com a sua conta</p>
+
+        <div>
+          <label for="email" class="text-sm font-medium"
+            >Nome de usuario:</label
+          >
+
+          <div class="relative mt-1">
+            <input
+              type="email"
+              v-model="user.username"
+              id="email"
+              class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+              placeholder="Enter email"
+            />
+
+            <span class="absolute inset-y-0 right-4 inline-flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <label for="password" class="text-sm font-medium">Senha:</label>
+
+          <div class="relative mt-1">
+            <input
+              type="password"
+              v-model="user.password"
+              id="password"
+              class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+              placeholder="Enter password"
+            />
+
+            <span class="absolute inset-y-0 right-4 inline-flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <button
+          @click="submitLogin()"
           @keydown.enter="submitLogin()"
-          v-model="user.username"
-          type="text"
-          placeholder="Enter your nickname"
-        />
-      </div>
-      <div class="input-field">
-        <span>Password:</span>
-        <input
-          @keydown.enter="submitLogin()"
-          v-model="user.password"
-          type="password"
-          placeholder="Enter your password"
-        />
-      </div>
-      <div class="button">
-        <button @click="submitLogin()">Submit !</button>
-      </div>
+          type="submit"
+          class="block w-full rounded-lg bg-emerald-600 px-5 py-3 text-sm font-medium text-white"
+        >
+          Entrar
+        </button>
+
+        <p class="text-center text-sm text-gray-500">
+          Não tem uma conta?
+          <a class="underline" href="/cadastro">Clique aqui</a>
+        </p>
+      </form>
     </div>
-    <section class="images">
-      <div class="image">
-        <div class="poligon"></div>
-        <img src="@/assets/cria.svg" alt="" />
-      </div>
-    </section>
   </div>
 </template>
 
-<style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-* {
-  font-family: "Poppins";
-  margin: 0;
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
-}
-
-.input-field {
-  display: flex;
-  flex-direction: column;
-}
-
-.all {
-  background-color: #eef;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.container {
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 20%;
-  padding: 60px;
-  z-index: 1;
-}
-
-span {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-.title {
-  margin-bottom: 7%;
-}
-
-.button button {
-  font-weight: 700;
-  border-radius: 50px;
-  height: 50px;
-  width: 200px;
-  margin-top: 10%;
-
-  color: #181616;
-}
-
-.input-field input {
-  padding: 10px;
-  border-radius: 8px;
-  height: 40px;
-  outline: 0;
-}
-
-.button button:hover {
-  cursor: pointer;
-  letter-spacing: 2px;
-  border: 4px solid #eecfc4;
-  background-color: #eef;
-  color: #181616;
-  transition: 0.5s;
-}
-
-section.images {
-  margin-left: 0px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  z-index: 0;
-}
-
-img {
-  width: 30rem;
-}
-
-section.images .poligon {
-  position: absolute;
-  height: 90%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: linear-gradient(
-    45deg,
-    #d3c6cc,
-    #e2c3c6,
-    #eecfc4,
-    #f8e6c6,
-    #ffffcc
-  );
-  clip-path: polygon(
-    63% 3%,
-    90% 20%,
-    92% 61%,
-    75% 100%,
-    25% 100%,
-    7% 59%,
-    18% 19%
-  );
-  z-index: -1;
-}
-
-@media only screen and (min-width: 900px) and (max-width: 1200px) {
-  section.images img {
-    height: 20rem;
-  }
-  section.images .poligon {
-    clip-path: polygon(
-      63% 3%,
-      90% 20%,
-      92% 61%,
-      75% 100%,
-      25% 100%,
-      7% 59%,
-      18% 19%
-    );
-  }
-}
-@media only screen and (max-width: 900px) {
-  .all {
-    background: linear-gradient(
-      45deg,
-      #d3c6cc,
-      #e2c3c6,
-      #eecfc4,
-      #f8e6c6,
-      #ffffcc
-    );
-  }
-  section.images {
-    display: none;
-    visibility: hidden;
-  }
-  main {
-    width: 100vw;
-  }
-}
-@media only screen and (max-width: 450px) {
-  main h1 {
-    font-size: 2rem;
-  }
-  main .alternative span {
-    font-size: 0.8rem;
-  }
-  main form label span,
-  main form input[type="submit"] {
-    font-size: 1rem;
-  }
-}
-</style>
+<style scoped></style>
