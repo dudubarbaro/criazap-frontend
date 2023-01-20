@@ -1,10 +1,54 @@
 <script>
-export default {};
+import cards from "@/components/cards.vue";
+import axios from "axios";
+import dayjs from "dayjs";
+import locale_pt_br from "dayjs/locale/pt-br";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
+
+export default {
+  components: { cards },
+  data() {
+    return {
+      empreendimentos: [],
+      empreendimento: {
+        autor: 0,
+      },
+    };
+  },
+  async created() {
+    const empreendimentos = await axios.get(
+      "http://localhost:8000/Empreendimentos/"
+    );
+    this.empreendimentos = empreendimentos.data;
+  },
+  async getAllComments() {
+    const empreendimento = await axios.get(
+      "http://localhost:8000/Empreendimentos/"
+    );
+    this.empreendimento = empreendimento.data;
+    this.empreendimento = empreendimento.data;
+    this.empreendimento.forEach(
+      (empreendimento) =>
+        (empreendimento.data = dayjs(empreendimento.data)
+          .locale(locale_pt_br)
+          .fromNow())
+    );
+  },
+};
 </script>
 
 <template>
   <div>
     <h3 class="text-2xl font-bold text-left py-2">Pagina Inicial</h3>
+    <div class="card-group">
+      <cards
+        v-for="empreendimento in empreendimentos"
+        :key="empreendimento.id"
+        :empreendimento="empreendimento"
+      />
+    </div>
     <div class="overflow-x-auto relative sm:rounded-lg">
       <table
         class="w-full text-sm text-left text-emerald-500 dark:text-gray-400"

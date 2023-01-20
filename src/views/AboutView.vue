@@ -1,7 +1,6 @@
 <template>
   <section class="home-section">
     <div class="all">
-      <Sidebar />
       <main class="about-page">
         <h1>About</h1>
         <p>This is the About page</p>
@@ -10,11 +9,7 @@
   </section>
 </template>
 <script>
-import Sidebar from "@/components/Sidebar.vue";
-
-export default {
-  components: { Sidebar },
-};
+export default {};
 </script>
 <style scoped>
 .sidebar.open .profile #log_out {

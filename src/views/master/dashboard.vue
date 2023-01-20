@@ -1,6 +1,7 @@
 <script>
 import { mapState } from "pinia";
 import { useAuthStore } from "@/stores/auth";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -9,6 +10,11 @@ export default {
       user: {},
       superuser: "",
     };
+  },
+  async created() {
+    const res = await axios.get(`http://localhost:8000/usuario/${this.id}/`);
+    this.user = res.data;
+    console.log(this.user);
   },
   methods: {
     // hide show side bar
@@ -21,7 +27,13 @@ export default {
     },
   },
   computed: {
-    ...mapState(useAuthStore, ["id", "is_superuser", "username"]),
+    ...mapState(useAuthStore, [
+      "id",
+      "is_superuser",
+      "username",
+      "email",
+      "foto",
+    ]),
   },
 };
 </script>
@@ -29,16 +41,13 @@ export default {
 <template>
   <div class="w-screen h-screen flex">
     <!-- Side bar -->
-    <div
-      class="w-[400px] h-full bg-amber-300 text-emerald-200"
-      v-show="showSide"
-    >
-      <div class="h-[50px] bg-emerald-900 flex justify-start items-center">
+    <div class="w-[400px] h-full bg-amber-300 text-sky-600" v-show="showSide">
+      <div class="h-[50px] bg-gray-900 flex justify-start items-center">
         <div class="px-[20px]">
-          <h3 class="font-bold text-xl">Criazap</h3>
+          <h3 class="font-bold text-xl">Imobchat</h3>
         </div>
       </div>
-      <div class="h-[calc(100vh-50px)] bg-emerald-800 py-[20px]">
+      <div class="h-[calc(100vh-50px)] bg-gray-800 py-[20px]">
         <div
           class="flex flex-col justify-between h-full px-[20px] space-y-[10px]"
         >
@@ -119,26 +128,33 @@ export default {
             </router-link>
           </div>
           <div class="h-[50px]">
-            <div>
-              <router-link
-                to="/config"
-                class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-emerald-800 hover:bg-emerald-300 hover:text-emerald-900 transition duration-400 ease-in-out"
+            <div class="flex items-center">
+              <div
+                class="flex items-center justify-start space-x-4"
+                @click="toggleDrop"
               >
-                <svg
-                  aria-hidden="true"
-                  class="mr-2 w-[25px] h-[25px] fill-current"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                {{ username }}
-              </router-link>
+                <img
+                  v-if="user.foto != null"
+                  :src="user.foto.url"
+                  class="w-10 h-10 rounded-full"
+                  alt=""
+                />
+                <img
+                  v-if="user.foto == null"
+                  src="@/assets/semfoto.png"
+                  class="w-10 h-10 rounded-full"
+                  alt="teste"
+                />
+              </div>
+              <div class="flex flex-col pl-3">
+                <div class="text-sm text-gray-50">{{ username }}</div>
+                <span class="text-xs text-[#acacb0] font-light tracking-tight">
+                  {{ email }}
+                </span>
+              </div>
+              <button
+                class="text-gray-400 bg-gray-700 rounded focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+              ></button>
             </div>
           </div>
         </div>
@@ -171,7 +187,7 @@ export default {
               <div class="relative w-full">
                 <input
                   type="text"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  class="bg-gray-100 border border-sky-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Pesquisar"
                   required
                 />
@@ -190,9 +206,16 @@ export default {
               @click="toggleDrop"
             >
               <img
+                v-if="user.foto != null"
+                :src="user.foto.url"
                 class="w-10 h-10 rounded-full border-2 border-gray-50"
-                src="@/assets/semfoto.png"
                 alt=""
+              />
+              <img
+                v-if="user.foto == null"
+                src="@/assets/semfoto.png"
+                class="w-10 h-10 rounded-full border-2 border-gray-50"
+                alt="teste"
               />
               <div class="font-semibold dark:text-white text-left">
                 <div>{{ username }}</div>
@@ -219,7 +242,7 @@ export default {
                 <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                 <a
                   href="/config"
-                  class="text-emerald-700 block px-4 py-2 text-sm"
+                  class="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-0"
@@ -227,7 +250,7 @@ export default {
                 >
                 <a
                   href="#"
-                  class="text-emerald-700 block px-4 py-2 text-sm"
+                  class="text-gray-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-2"
@@ -235,7 +258,7 @@ export default {
                 >
                 <a
                   href="/"
-                  class="text-emerald-700 block px-4 py-2 text-sm"
+                  class="text-eg-700 block px-4 py-2 text-sm"
                   role="menuitem"
                   tabindex="-1"
                   id="menu-item-2"

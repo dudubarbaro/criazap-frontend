@@ -1,7 +1,6 @@
 <template>
   <section class="home-section">
     <div class="all">
-      <Sidebar />
       <main class="status-page">
         <h1>status</h1>
         <p>This is the status page</p>

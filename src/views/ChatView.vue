@@ -46,9 +46,6 @@ export default {
       );
     },
   },
-  async created() {
-    await this.getAllComments();
-  },
 };
 </script>
 <template>
